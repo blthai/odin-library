@@ -1,4 +1,5 @@
 const table = document.getElementsByClassName("book-list")[0];
+const newBookButton = document.getElementsByClassName("new-book-button")[0];
 
 let myLibrary = [];
 
@@ -17,19 +18,17 @@ function addBookToLibrary() {
 function updateLibrary() {
   let rowCount = 0;
   myLibrary.forEach((book) => {
-    let newRow = table.insertRow(rowCount);
+    const newRow = table.insertRow(rowCount);
     let cellCount = 0;
     Object.values(book).forEach((prop) => {
-      let newCell = newRow.insertCell(cellCount);
-      let newCellText = document.createTextNode(prop);
+      const newCell = newRow.insertCell(cellCount);
+      const newCellText = document.createTextNode(prop);
       newCell.appendChild(newCellText);
       cellCount += 1;
     });
     rowCount += 1;
   });
 }
-
-
 
 const book1 = new Book(
   "'The Haunting of the Mansion on the Hill'",
