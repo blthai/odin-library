@@ -2,9 +2,13 @@ html {
   font-size: 62.5%;
 }
 
+body {
+  background-color: rgb(204, 199, 199);
+}
+
 .library-contents {
   border: solid black 2px;
-  width: 100rem;
+  width: 140rem;
 }
 
 tbody {
@@ -16,8 +20,21 @@ th {
   font-size: 2.4rem;
 }
 
+.new-book-button{
+  width: 20rem;
+  margin-left: 10rem;
+}
+
 td {
   text-align: center;
   font-size: 1.6rem;
   border: solid 1px black;
 }
+
+.container{
+  display: grid;
+  justify-content: center;
+  row-gap: 15rem;
+  margin-top: 10rem;
+}
+
