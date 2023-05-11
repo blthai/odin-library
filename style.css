@@ -1,3 +1,23 @@
-html{
+html {
   font-size: 62.5%;
+}
+
+.library-contents {
+  border: solid black 2px;
+  width: 100rem;
+}
+
+tbody {
+  background-color: rgb(236, 231, 231);
+}
+
+th {
+  border: solid black 1px;
+  font-size: 2.4rem;
+}
+
+td {
+  text-align: center;
+  font-size: 1.6rem;
+  border: solid 1px black;
 }
