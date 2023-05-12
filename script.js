@@ -1,5 +1,6 @@
 const table = document.getElementsByClassName("book-list")[0];
 const newBookButton = document.getElementsByClassName("new-book-button")[0];
+const newBookForm = document.getElementsByClassName("new-book-form")[0];
 
 let myLibrary = [];
 
@@ -30,6 +31,23 @@ function updateLibrary() {
   });
 }
 
+function getNewBookInfo() {
+  const newForm = document.createElement('form');
+  const titleInput = document.createElement('input');
+  const authorInput = document.createElement('input');
+  const pageCountInput = document.createElement('input');
+  const readStatusInput = document.createElement('input');
+  const submitButton = document.createElement('button');
+  submitButton.type = 'submit';
+  submitButton.appendChild(document.createTextNode('Add Book'))
+  newForm.appendChild(titleInput);
+  newForm.appendChild(authorInput);
+  newForm.appendChild(pageCountInput);
+  newForm.appendChild(readStatusInput);
+  newForm.appendChild(submitButton);
+  newBookForm.appendChild(newForm);
+}
+
 const book1 = new Book(
   "'The Haunting of the Mansion on the Hill'",
   "Taylor McKinley",
@@ -50,6 +68,8 @@ const book3 = new Book(
   97,
   "Not Read"
 );
+
+newBookButton.addEventListener('click', getNewBookInfo)
 
 myLibrary.push(book1);
 myLibrary.push(book2);
