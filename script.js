@@ -13,6 +13,22 @@ function Book(title, author, pageCount, readStatus) {
   this.pageCount = pageCount;
   this.readStatus = readStatus;
 }
+function removeBook(event) {
+  const deletedButtonRow = event.target.dataset.rowNumber;
+  bookList.deleteRow(deletedButtonRow);
+  rowCount-=1;
+  if(event.target.dataset.rowNumber === bookList.rows.length){
+    return;
+  }
+  const removeButtons = document.querySelectorAll(".remove-button");
+  removeButtons.forEach((removeButton) => {
+    if(removeButton.dataset.rowNumber > deletedButtonRow){
+      removeButton.dataset.rowNumber-=1;
+    }
+  })
+  
+  
+}
 
 function updateLibrary() {
   myLibrary.forEach((book) => {
@@ -25,7 +41,13 @@ function updateLibrary() {
         newCell.appendChild(newCellText);
         cellCount += 1;
       });
-      
+      const newCell = newRow.insertCell(cellCount);
+      const newCellButton = document.createElement('button');
+      newCellButton.textContent='Remove'
+      newCellButton.addEventListener('click', removeBook);
+      newCellButton.dataset.rowNumber = rowCount;
+      newCellButton.classList.add("remove-button");
+      newCell.appendChild(newCellButton);
       rowCount += 1;
       existingBooks.push(book.title);
     }
