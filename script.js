@@ -95,19 +95,25 @@ function addBookToLibrary(book) {
 
 // <label for="username">Enter your username:</label>
 function getNewBookInfo() {
+  if(newBookForm.childNodes.length > 1){
+    return;
+  }
   currentForm = document.createElement("form");
+  const titleComponent = document.createElement("div");
   const titleLabel = document.createElement("label");
   titleLabel.htmlFor = "title";
   titleLabel.textContent = "Title:";
   const titleInput = document.createElement("input");
   titleInput.id = "title";
   titleInput.required = true;
+  const authorComponent = document.createElement("div");
   const authorInput = document.createElement("input");
   authorInput.id = "author";
   authorInput.required=true;
   const authorLabel = document.createElement("label");
   authorLabel.htmlfor = "author";
   authorLabel.textContent = "Author:";
+  const pageCountComponent = document.createElement("div");
   const pageCountInput = document.createElement("input");
   pageCountInput.id = "pages"
   pageCountInput.required = true;
@@ -124,12 +130,15 @@ function getNewBookInfo() {
   const submitButton = document.createElement("button");
   submitButton.type = "submit";
   submitButton.appendChild(document.createTextNode("Add Book"));
-  currentForm.appendChild(titleLabel);
-  currentForm.appendChild(titleInput);
-  currentForm.appendChild(authorLabel);
-  currentForm.appendChild(authorInput);
-  currentForm.appendChild(pageCountLabel);
-  currentForm.appendChild(pageCountInput);
+  titleComponent.appendChild(titleLabel);
+  titleComponent.appendChild(titleInput);
+  authorComponent.appendChild(authorLabel);
+  authorComponent.appendChild(authorInput);
+  pageCountComponent.appendChild(pageCountLabel);
+  pageCountComponent.appendChild(pageCountInput);
+  currentForm.appendChild(titleComponent);
+  currentForm.appendChild(authorComponent);
+  currentForm.appendChild(pageCountComponent);
   currentForm.appendChild(readStatusLabel);
   currentForm.appendChild(readStatusInput);
   currentForm.appendChild(submitButton);
@@ -143,12 +152,11 @@ function getNewBookInfo() {
         readStatusInput.value
       )
     );
-    titleInput.value = "";
-    authorInput.value = "";
-    pageCountInput.value = "";
-    readStatusInput.value = "";
+    newBookForm.removeChild(currentForm);
   });
 }
 
+
+
 // only allow the new book button to be used once at a time so that it doesnt create more than one form
-newBookButton.addEventListener("click", getNewBookInfo, { once: true });
+newBookButton.addEventListener("click", getNewBookInfo);
