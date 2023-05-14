@@ -39,6 +39,19 @@ tbody {
 
 }
 
+.remove-button{
+  color: white;
+  background-color: red;
+  border: none;
+  border-radius: 12px;
+}
+
+.remove-button:hover{
+  background-color: rgb(214, 1, 1);
+  border: solid 1px black;
+ 
+}
+
 .book-list td{
   padding: 1.4rem 0;
 }
