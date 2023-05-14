@@ -16,10 +16,6 @@ h1{
   
 }
 
-thead{
-
-}
-
 table{
   border-collapse: collapse;
 }
@@ -34,10 +30,6 @@ table{
 
 .book-list tr:hover{
   background-color: rgb(221, 219, 219);
-}
-
-tbody {
-
 }
 
 .remove-button{
@@ -57,12 +49,9 @@ tbody {
   padding: 1.4rem 0;
 }
 
-.book-list tr{
-}
-
 .book-list{
   border-collapse: collapse;
-  }
+}
 
 
 .book-list tr:hover{
@@ -111,8 +100,8 @@ td {
 .container{
   display: grid;
   justify-content: center;
-  row-gap: 15rem;
-  margin-top: 10rem;
+  row-gap: 5rem;
+  margin-top: 3rem;
   height: 100%;
 }
 
