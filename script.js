@@ -41,9 +41,11 @@ function changeReadStatus(event) {
     bookList.rows[event.target.dataset.rowNumber].cells[3].textContent =
       "Not Read";
     event.target.textContent = "Read";
+    event.target.dataset.currentStatus = "read";
   } else {
     bookList.rows[event.target.dataset.rowNumber].cells[3].textContent = "Read";
     event.target.textContent = "Not Read";
+    event.target.dataset.currentStatus = "notread";
   }
 }
 
@@ -74,8 +76,10 @@ function updateLibrary() {
       const readToggleButton = document.createElement("button");
       if (bookList.rows[rowCount].cells[3].textContent === "Read") {
         readToggleButton.textContent = "Not Read";
+        readToggleButton.dataset.currentStatus = "notread";
       } else {
         readToggleButton.textContent = "Read";
+        readToggleButton.dataset.currentStatus = "read";
       }
       readToggleButton.addEventListener("click", changeReadStatus);
       readToggleButton.dataset.rowNumber = rowCount;
@@ -188,3 +192,4 @@ function getNewBookInfo() {
 
 // only allow the new book button to be used once at a time so that it doesnt create more than one form
 newBookButton.addEventListener("click", getNewBookInfo);
+
