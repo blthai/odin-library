@@ -105,3 +105,19 @@ label{
   font-size: 1.6rem;
 }
 
+.toggle-read-button{
+  border-radius: 12px;
+  border: none;
+  background-color: gray;
+  color: white;
+}
+
+[data-current-status='notread']:hover{
+  background-color: rgb(204, 157, 2);
+  color: black;
+}
+
+[data-current-status='read']:hover{
+  background-color: rgb(1, 197, 1);
+  color: black;
+}
