@@ -102,7 +102,7 @@ function getNewBookInfo() {
   const titleComponent = document.createElement("div");
   const titleLabel = document.createElement("label");
   titleLabel.htmlFor = "title";
-  titleLabel.textContent = "Title:";
+  titleLabel.textContent = "Title: ";
   const titleInput = document.createElement("input");
   titleInput.id = "title";
   titleInput.required = true;
@@ -112,7 +112,7 @@ function getNewBookInfo() {
   authorInput.required=true;
   const authorLabel = document.createElement("label");
   authorLabel.htmlfor = "author";
-  authorLabel.textContent = "Author:";
+  authorLabel.textContent = "Author: ";
   const pageCountComponent = document.createElement("div");
   const pageCountInput = document.createElement("input");
   pageCountInput.id = "pages"
@@ -120,10 +120,11 @@ function getNewBookInfo() {
   pageCountInput.min = 1;
   const pageCountLabel = document.createElement("label");
   pageCountLabel.htmlfor = "pages";
-  pageCountLabel.textContent = "Page Count:";
+  pageCountLabel.textContent = "Page Count: ";
+  const readStatusComponent = document.createElement("div");
   const readStatusLabel = document.createElement("label");
   readStatusLabel.htmlFor = "read";
-  readStatusLabel.textContent = "Read Status:";
+  readStatusLabel.textContent = "Read Status: ";
   const readStatusInput = document.createElement("input");
   readStatusInput.id = "read"
   readStatusInput.required = true;
@@ -136,11 +137,12 @@ function getNewBookInfo() {
   authorComponent.appendChild(authorInput);
   pageCountComponent.appendChild(pageCountLabel);
   pageCountComponent.appendChild(pageCountInput);
+  readStatusComponent.appendChild(readStatusLabel);
+  readStatusComponent.appendChild(readStatusInput);
   currentForm.appendChild(titleComponent);
   currentForm.appendChild(authorComponent);
   currentForm.appendChild(pageCountComponent);
-  currentForm.appendChild(readStatusLabel);
-  currentForm.appendChild(readStatusInput);
+  currentForm.appendChild(readStatusComponent);
   currentForm.appendChild(submitButton);
   newBookForm.appendChild(currentForm);
   currentForm.addEventListener("submit", () => {
