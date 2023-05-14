@@ -36,8 +36,6 @@ function removeBook(event) {
   });
 }
 
-
-
 function changeReadStatus(event) {
   if (event.target.textContent === "Not Read") {
     bookList.rows[event.target.dataset.rowNumber].cells[3].textContent =
@@ -89,27 +87,50 @@ function updateLibrary() {
   });
 }
 
-
 function addBookToLibrary(book) {
   event.preventDefault();
   myLibrary.push(book);
   updateLibrary();
 }
 
-// 
+// <label for="username">Enter your username:</label>
 function getNewBookInfo() {
   currentForm = document.createElement("form");
+  const titleLabel = document.createElement("label");
+  titleLabel.htmlFor = "title";
+  titleLabel.textContent = "Title:";
   const titleInput = document.createElement("input");
-  titleInput.name = "title";
+  titleInput.id = "title";
+  titleInput.required = true;
   const authorInput = document.createElement("input");
+  authorInput.id = "author";
+  authorInput.required=true;
+  const authorLabel = document.createElement("label");
+  authorLabel.htmlfor = "author";
+  authorLabel.textContent = "Author:";
   const pageCountInput = document.createElement("input");
+  pageCountInput.id = "pages"
+  pageCountInput.required = true;
+  pageCountInput.min = 1;
+  const pageCountLabel = document.createElement("label");
+  pageCountLabel.htmlfor = "pages";
+  pageCountLabel.textContent = "Page Count:";
+  const readStatusLabel = document.createElement("label");
+  readStatusLabel.htmlFor = "read";
+  readStatusLabel.textContent = "Read Status:";
   const readStatusInput = document.createElement("input");
+  readStatusInput.id = "read"
+  readStatusInput.required = true;
   const submitButton = document.createElement("button");
   submitButton.type = "submit";
   submitButton.appendChild(document.createTextNode("Add Book"));
+  currentForm.appendChild(titleLabel);
   currentForm.appendChild(titleInput);
+  currentForm.appendChild(authorLabel);
   currentForm.appendChild(authorInput);
+  currentForm.appendChild(pageCountLabel);
   currentForm.appendChild(pageCountInput);
+  currentForm.appendChild(readStatusLabel);
   currentForm.appendChild(readStatusInput);
   currentForm.appendChild(submitButton);
   newBookForm.appendChild(currentForm);
@@ -131,4 +152,3 @@ function getNewBookInfo() {
 
 // only allow the new book button to be used once at a time so that it doesnt create more than one form
 newBookButton.addEventListener("click", getNewBookInfo, { once: true });
-
