@@ -31,6 +31,10 @@ tbody {
 
 }
 
+tbody td{
+  padding: 1rem 0;
+}
+
 th {
   color: rgb(151, 151, 151);
   font-size: 2.4rem;
