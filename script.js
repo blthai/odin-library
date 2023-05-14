@@ -14,7 +14,8 @@ function Book(title, author, pageCount, readStatus) {
   this.readStatus = readStatus;
 }
 
-//
+// delete the targeted row by using the stored index. Adjust the rowCount variable for future row inserts.
+// if the row wasn't the last one in the table, adjust all proceeding rows' attributes to have accurate rowNumber references.
 function removeBook(event) {
   const deletedButtonRow = event.target.dataset.rowNumber;
   bookList.deleteRow(deletedButtonRow);
@@ -36,6 +37,9 @@ function removeBook(event) {
   });
 }
 
+// Adjust text content of the book's read status to match the final state of the book after toggling read.
+// Adjust the data attributes of the read toggle buttons to reflect the current read status of the book.
+// This is done to create responsive color changes for the read toggle buttons as the data attributes are referenced in the css file.
 function changeReadStatus(event) {
   if (event.target.textContent === "Not Read") {
     bookList.rows[event.target.dataset.rowNumber].cells[3].textContent =
@@ -49,6 +53,10 @@ function changeReadStatus(event) {
   }
 }
 
+// If the book in the library is not already displayed in the table, insert a row and fill the cells with the book object properties.
+// Create remove buttons and toggle buttons for the book's display in the table
+// After this is all done ensure to increment rowCount variable for the next book that will be added to the table.
+// Store the book's title to keep track that it is being displayed in the table.
 function updateLibrary() {
   myLibrary.forEach((book) => {
     if (!existingBooks.includes(book.title)) {
@@ -91,15 +99,19 @@ function updateLibrary() {
   });
 }
 
+// prevent default behavior for the submit button as the data is used to create a new Book object instead
+// The form inputs are cleaned up by the function that called this one.
 function addBookToLibrary(book) {
   event.preventDefault();
   myLibrary.push(book);
   updateLibrary();
 }
 
-// <label for="username">Enter your username:</label>
+// To avoid having the new book button create more than one set of inputs, check to see if the form has more than one child when the event is triggered.
+// If new Book Button hasn't created a set of inputs, create them.
+// When the form is submitted, pass a Book object created from the form inputs' values to addBookToLibrary(), and remove the form object from its parent to reset the page.
 function getNewBookInfo() {
-  if(newBookForm.childNodes.length > 1){
+  if (newBookForm.childNodes.length > 1) {
     return;
   }
   currentForm = document.createElement("form");
@@ -113,29 +125,29 @@ function getNewBookInfo() {
   const authorComponent = document.createElement("div");
   const authorInput = document.createElement("input");
   authorInput.id = "author";
-  authorInput.required=true;
+  authorInput.required = true;
   const authorLabel = document.createElement("label");
   authorLabel.htmlfor = "author";
   authorLabel.textContent = "Author: ";
   const pageCountComponent = document.createElement("div");
   const pageCountInput = document.createElement("input");
-  pageCountInput.type = 'number';
-  pageCountInput.id = "pages"
+  pageCountInput.type = "number";
+  pageCountInput.id = "pages";
   pageCountInput.required = true;
-  pageCountInput.min = '1';
+  pageCountInput.min = "1";
   const pageCountLabel = document.createElement("label");
   pageCountLabel.htmlfor = "pages";
   pageCountLabel.textContent = "Page Count: ";
   const readOption = document.createElement("input");
   readOption.value = "Read";
-  readOption.type = 'radio';
-  readOption.name = 'readStatus';
-  readOption.id = 'read'
+  readOption.type = "radio";
+  readOption.name = "readStatus";
+  readOption.id = "read";
   const notReadOption = document.createElement("input");
   notReadOption.value = "Not Read";
-  notReadOption.type = 'radio';
-  notReadOption.name = 'readStatus';
-  notReadOption.id = 'notread'
+  notReadOption.type = "radio";
+  notReadOption.name = "readStatus";
+  notReadOption.id = "notread";
   const readOptionLabel = document.createElement("label");
   readOptionLabel.htmlFor = "read";
   readOptionLabel.textContent = "Read";
@@ -143,12 +155,6 @@ function getNewBookInfo() {
   notReadOptionLabel.htmlFor = "notread";
   notReadOptionLabel.textContent = "Not Read";
   const readStatusComponent = document.createElement("fieldset");
-  // const readStatusLabel = document.createElement("label");
-  // readStatusLabel.htmlFor = "read";
-  // readStatusLabel.textContent = "Read Status: ";
-  // const readStatusInput = document.createElement("input");
-  // readStatusInput.id = "read"
-  // readStatusInput.required = true;
   const submitButton = document.createElement("button");
   submitButton.type = "submit";
   submitButton.appendChild(document.createTextNode("Add Book"));
@@ -170,11 +176,10 @@ function getNewBookInfo() {
   newBookForm.appendChild(currentForm);
   currentForm.addEventListener("submit", () => {
     let chosenRadioButton;
-    if(readOption.checked){
-      chosenRadioButton=readOption.value;
-    }
-    else{
-      chosenRadioButton=notReadOption.value;
+    if (readOption.checked) {
+      chosenRadioButton = readOption.value;
+    } else {
+      chosenRadioButton = notReadOption.value;
     }
     addBookToLibrary(
       new Book(
@@ -188,8 +193,4 @@ function getNewBookInfo() {
   });
 }
 
-
-
-// only allow the new book button to be used once at a time so that it doesnt create more than one form
 newBookButton.addEventListener("click", getNewBookInfo);
-
