@@ -115,9 +115,10 @@ function getNewBookInfo() {
   authorLabel.textContent = "Author: ";
   const pageCountComponent = document.createElement("div");
   const pageCountInput = document.createElement("input");
+  pageCountInput.type = 'number';
   pageCountInput.id = "pages"
   pageCountInput.required = true;
-  pageCountInput.min = 1;
+  pageCountInput.min = '1';
   const pageCountLabel = document.createElement("label");
   pageCountLabel.htmlfor = "pages";
   pageCountLabel.textContent = "Page Count: ";
