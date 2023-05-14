@@ -94,7 +94,6 @@ th {
 td {
   text-align: center;
   font-size: 1.6rem;
-  
 }
 
 .container{
@@ -109,6 +108,8 @@ td {
   display: grid;
   gap: 3rem;
   justify-items: center;
+  border: solid 1px gray;
+  padding: 16px;
 }
 
 label{
