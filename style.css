@@ -19,6 +19,10 @@ thead{
 
 }
 
+table{
+  border-collapse: collapse;
+}
+
 .table-head-divider{
   width: 140rem;
   background-color: rgb(219, 219, 219);
@@ -27,12 +31,32 @@ thead{
   margin-top: 10px;
 }
 
+.book-list tr:hover{
+  background-color: rgb(221, 219, 219);
+}
+
 tbody {
 
 }
 
-tbody td{
+.book-list td{
   padding: 1.4rem 0;
+}
+
+.book-list tr{
+}
+
+.book-list{
+  border-collapse: collapse;
+  }
+
+
+.book-list tr:hover{
+  background-color: rgb(221, 219, 219);
+}
+
+.book-list td:hover{
+  background-color: rgb(221, 219, 219);
 }
 
 th {
