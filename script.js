@@ -122,13 +122,29 @@ function getNewBookInfo() {
   const pageCountLabel = document.createElement("label");
   pageCountLabel.htmlfor = "pages";
   pageCountLabel.textContent = "Page Count: ";
-  const readStatusComponent = document.createElement("div");
-  const readStatusLabel = document.createElement("label");
-  readStatusLabel.htmlFor = "read";
-  readStatusLabel.textContent = "Read Status: ";
-  const readStatusInput = document.createElement("input");
-  readStatusInput.id = "read"
-  readStatusInput.required = true;
+  const readOption = document.createElement("input");
+  readOption.value = "Read";
+  readOption.type = 'radio';
+  readOption.name = 'readStatus';
+  readOption.id = 'read'
+  const notReadOption = document.createElement("input");
+  notReadOption.value = "Not Read";
+  notReadOption.type = 'radio';
+  notReadOption.name = 'readStatus';
+  notReadOption.id = 'notread'
+  const readOptionLabel = document.createElement("label");
+  readOptionLabel.htmlFor = "read";
+  readOptionLabel.textContent = "Read";
+  const notReadOptionLabel = document.createElement("label");
+  notReadOptionLabel.htmlFor = "notread";
+  notReadOptionLabel.textContent = "Not Read";
+  const readStatusComponent = document.createElement("fieldset");
+  // const readStatusLabel = document.createElement("label");
+  // readStatusLabel.htmlFor = "read";
+  // readStatusLabel.textContent = "Read Status: ";
+  // const readStatusInput = document.createElement("input");
+  // readStatusInput.id = "read"
+  // readStatusInput.required = true;
   const submitButton = document.createElement("button");
   submitButton.type = "submit";
   submitButton.appendChild(document.createTextNode("Add Book"));
@@ -138,8 +154,10 @@ function getNewBookInfo() {
   authorComponent.appendChild(authorInput);
   pageCountComponent.appendChild(pageCountLabel);
   pageCountComponent.appendChild(pageCountInput);
-  readStatusComponent.appendChild(readStatusLabel);
-  readStatusComponent.appendChild(readStatusInput);
+  readStatusComponent.appendChild(readOption);
+  readStatusComponent.appendChild(readOptionLabel);
+  readStatusComponent.appendChild(notReadOption);
+  readStatusComponent.appendChild(notReadOptionLabel);
   currentForm.appendChild(titleComponent);
   currentForm.appendChild(authorComponent);
   currentForm.appendChild(pageCountComponent);
@@ -147,12 +165,19 @@ function getNewBookInfo() {
   currentForm.appendChild(submitButton);
   newBookForm.appendChild(currentForm);
   currentForm.addEventListener("submit", () => {
+    let chosenRadioButton;
+    if(readOption.checked){
+      chosenRadioButton=readOption.value;
+    }
+    else{
+      chosenRadioButton=notReadOption.value;
+    }
     addBookToLibrary(
       new Book(
         titleInput.value,
         authorInput.value,
         pageCountInput.value,
-        readStatusInput.value
+        chosenRadioButton
       )
     );
     newBookForm.removeChild(currentForm);
